@@ -1,0 +1,154 @@
+﻿@{
+    ViewData["Title"] = "SignUp";
+}
+
+<style>
+    .imagen {
+        transition: transform 0.5s;
+    }
+
+        .imagen:hover {
+            transform: rotate(360deg);
+        }
+
+    .sombra {
+        box-shadow: 5px 8px 3px 0 rgba(0, 0, 0, 0.8);
+        box-sizing: border-box;
+        border-style: solid;
+        border-color: #265728;
+        border-radius: 10px;
+    }
+
+    .botonOK {
+        background-color: #3a853d;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border: none;
+        margin-top: 6px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .botonOK:hover {
+            background-color: #234d25;
+        }
+
+    .vinculo {
+        color: #fff;
+    }
+
+    .link:hover {
+        color: #3a853d
+    }
+
+    .cabezera {
+        background-color: #0b0b0b;
+    }
+
+
+    .campo {
+        border: none;
+        border-bottom: 2px solid white;
+        outline: none;
+        margin-bottom: 15px;
+        padding: 0.3rem;
+        background-color: #141414;
+        color: white;
+    }
+
+    .LossSounds {
+        color: #3a853d;
+    }
+
+</style>
+
+<div>
+    <div class="fixed-top w-100 p-3 cabezera">
+        <div class="align-items-center">
+            <h3 class="text-light">
+                LossSounds music
+            </h3>
+        </div>
+    </div>
+
+    <div class="container align-items-center">
+
+        <div class="container col-6 mt-5 p-2 text-light d-flex" id="formulario">
+            <div class="p-3 sombra mt-5">
+                <h1 class="fw-bold">Unirme a <span class="LossSounds">LossSounds</span></h1>
+                <form class="d-flex flex-column p-3">
+                    <label>Nuevo usuario</label>
+                    <input type="text" id="name" placeholder="Mi nuevo usuario..." class="campo" required />
+
+                    <label>Contraseña</label>
+                    <input type="password" id="password" placeholder="Ingresa mi contraseña..." class="campo" required />
+
+                    <label>Confirmar contraseña</label>
+                    <input type="password" id="passswordConfirmed" placeholder="Ingresar para confirmar..." class="campo" required />
+                    <input type="number" id="Rol" hidden value="3">
+
+
+                    <input type="submit" class="botonOK" onclick="register()" value="Register">
+                </form>
+
+                <div class="d-flex justify-content-evenly">
+                    <p>Tienes una cuenta?</p>
+                    <a asp-controller="Home" asp-action="Index" class="vinculo" > Iniciar Sesion </a>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="m-3 fixed-bottom align-items-center">
+            <hr class="text-light" />
+
+            <div class="container text-light text-center ">
+                <p>Loss Sounds @@copyright 2024</p>
+
+            </div>
+
+        </footer>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        // Captura el evento submit del formulario
+        $('form').submit(function (event) {
+            // Evita el envío predeterminado del formulario
+            event.preventDefault();
+
+            // Llama a la función register() para procesar los datos
+            register();
+        });
+
+        function register() {
+            var jsonModel = {
+                "NombreUsuario": document.getElementById('name').value,
+                "Contrasena": document.getElementById('password').value,
+                "ConfirmPassword": document.getElementById('passswordConfirmed').value,
+                "ID_Rol": 3
+            }
+            console.log(jsonModel);
+
+            $.ajax({
+                url: '@Url.Action("Register", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                data: jsonModel,
+                success: function (response) {
+                    alert(response);
+                    window.location.reload();
+                    console.log(response);
+                }, error: function (error) {
+                    alert(error);
+                }
+            });
+        }
+    });
+</script>

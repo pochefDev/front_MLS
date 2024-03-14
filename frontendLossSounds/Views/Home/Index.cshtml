@@ -1,0 +1,160 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .imagen {
+        transition: transform 0.5s;
+    }
+
+        .imagen:hover {
+            transform: rotate(360deg);
+        }
+
+    .sombra {
+        box-shadow: 5px 8px 3px 0 rgba(0, 0, 0, 0.8);
+        box-sizing: border-box;
+        border-style: solid;
+        border-color: #265728;
+        border-radius: 10px;
+    }
+
+    .botonOK {
+        background-color: #3a853d;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border: none;
+        margin-top: 6px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .botonOK:hover {
+            background-color: #234d25;
+        }
+
+    .vinculo {
+        color: #fff;
+    }
+
+    .link:hover {
+        color: #3a853d
+    }
+
+    .cabezera {
+        background-color: #0b0b0b;
+    }
+
+
+    .campo {
+        border: none;
+        border-bottom: 2px solid white;
+        outline: none;
+        margin-bottom: 15px;
+        padding: 0.3rem;
+        background-color: #141414;
+        color: white;
+    }
+
+</style>
+
+<div>
+
+    <div class="fixed-top w-100 mb-5 p-3 cabezera">
+        <div class="align-items-center">
+            <h3 class="text-light">
+                LossSounds music
+            </h3>
+        </div>
+    </div>
+
+    <div class="container row mt-5 align-items-center">
+
+        <div class="container text-light mt-5 col-xs-10 col-md-5" id="formulario">
+            <div class="p-3 sombra">
+                <h1 class="fw-bold">Entrar con mi cuenta</h1>
+                <form class="d-flex flex-column p-3">
+                    <label>Usuario</label>
+                    <input type="text" id="name" placeholder="Ingresa tu usuario..." class="campo" required />
+
+                    <label>Contraseña</label>
+                    <input type="password" id="password" placeholder="Ingresa tu contraseña..." class="campo" required />
+
+                    <input type="submit" class="botonOK" onclick="login()" value="Login"/>
+                </form>
+
+                <div class="d-flex justify-content-evenly">
+                    <p>Aun no tienes una cuenta? </p>
+                    <a asp-controller="Home" asp-action="SignUp" class="vinculo"> Registrate ahora</a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="container text-light col-xs-10 col-md-5 m-5 text-center" id="carta bienvenida">
+            <img src="~/css/img/logo fondo azul marino.jpeg" alt="..." height="150" class="rounded-circle imagen mb-2" />
+            <p>
+                Creemos que la música es parte de <b>ti</b> por lo que hemos creado el <b>mejor</b> reproductor para los escuchas como tú.
+            </p>
+            <br />
+            <p>
+                En LossSounds queremos darte la mejor <b>experiencia</b> de música. <br /> Qué esperas??!!
+            </p>
+
+        </div>
+    </div>
+
+
+    <footer class="m-3 fixed-bottom align-items-center">
+        <hr class="text-light" />
+
+        <div class="container text-light text-center ">
+            <p>Loss Sounds @@copyright 2024</p>
+
+        </div>
+
+    </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        // Captura el evento submit del formulario
+        $('form').submit(function (event) {
+            // Evita el envío predeterminado del formulario
+            event.preventDefault();
+
+            // Llama a la función register() para procesar los datos
+            login();
+        });
+
+        function login() {
+            var jsonModel = {
+                "Nombre_Usuario": document.getElementById('name').value,
+                "Contrasena": document.getElementById('password').value,
+            }
+            console.log(jsonModel);
+
+
+            $.ajax({
+                url: '@Url.Action("Login", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                data: jsonModel,
+                success: function (response) {
+                    alert(response);
+                    window.location.reload();
+                }, error: function (error) {
+                    alert(error);
+                }
+            });
+        }
+
+    });
+</script>
