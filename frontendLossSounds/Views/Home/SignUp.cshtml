@@ -134,7 +134,6 @@
                 "ConfirmPassword": document.getElementById('passswordConfirmed').value,
                 "ID_Rol": 3
             }
-            console.log(jsonModel);
 
             $.ajax({
                 url: '@Url.Action("Register", "Home")',
@@ -143,8 +142,7 @@
                 data: jsonModel,
                 success: function (response) {
                     alert(response);
-                    window.location.reload();
-                    console.log(response);
+                    window.location.href = '@Url.Action("Index", "Home")';
                 }, error: function (error) {
                     alert(error);
                 }

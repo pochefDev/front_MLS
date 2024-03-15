@@ -1,14 +1,14 @@
 using frontendLossSounds.Models;
 using frontendLossSounds.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging; // Agregado para ILogger
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text;
-using System.Threading.Tasks; // Agregado para Task
-using System.IO; // Agregado para Directory
-using Microsoft.Extensions.Configuration; // Agregado para IConfiguration
-using System.Net.Http; // Agregado para HttpClient
+using System.Threading.Tasks;
+using System.IO; 
+using Microsoft.Extensions.Configuration; 
+using System.Net.Http;
 using System;
 using System.Text.Json.Serialization;
 
@@ -16,10 +16,10 @@ namespace frontendLossSounds.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger; // Cambiado a readonly
+        private readonly ILogger<HomeController> _logger; 
 
         private BaseServices _services;
-        public HomeController(ILogger<HomeController> logger) // Cambiado a un solo constructor
+        public HomeController(ILogger<HomeController> logger) 
         {
             _logger = logger;
             _services = new BaseServices();
@@ -91,7 +91,6 @@ namespace frontendLossSounds.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> Login(LoginModel user)
         {
             TokenModel tokenModel = await _services.GetToken();
@@ -123,7 +122,16 @@ namespace frontendLossSounds.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonResponse = await response.Content.ReadAsStringAsync();
-                    return Json(jsonResponse);
+                    //Guardar datos del usuario en variables de sesion
+                    var responseObject = JsonSerializer.Deserialize<LoginResponseModel>(jsonResponse);
+
+                    var userName = responseObject.Nombre_Usuario;
+                    var Rol = responseObject.ID_Rol;
+
+                    HttpContext.Session.SetString("UserName", userName);
+                    HttpContext.Session.SetInt32("Rol", Rol);
+
+                    return Json("Loggeo exitoso");
                 }
                 else
                 {
