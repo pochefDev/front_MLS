@@ -133,11 +133,14 @@ namespace frontendLossSounds.Controllers
                         RolID = responseObject.ID_Rol
                     };
 
-                    #region Como usar las variables de sesión
                     HttpContext.Session.SetString("UserLogged", JsonSerializer.Serialize(userLogged));
 
-                    //Para usar las propiedades del usuario loggeado
+                    #region Como usar las variables de sesión
+
+                    //Se deserealiza el objeto "UserLogged" que esta guardada como string al tipo "Settings"
                     Settings settings = JsonSerializer.Deserialize<Settings>(HttpContext.Session.GetString("UserLogged"));
+
+                    //Para despues poder utilizarlas con "settings.NombrePropiedad"
                     ViewBag.User = settings.NombreUsuario;
                     ViewBag.Rol = settings.RolID;
                     #endregion
