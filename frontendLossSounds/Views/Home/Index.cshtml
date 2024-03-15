@@ -139,8 +139,6 @@
                 "Nombre_Usuario": document.getElementById('name').value,
                 "Contrasena": document.getElementById('password').value,
             }
-            console.log(jsonModel);
-
 
             $.ajax({
                 url: '@Url.Action("Login", "Home")',
@@ -148,7 +146,6 @@
                 dataType: 'json',
                 data: jsonModel,
                 success: function (response) {
-                    console.log('')
                     alert(response);
                     window.location.reload();
                 }, error: function (error) {

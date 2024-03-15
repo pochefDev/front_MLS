@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http;
 
 namespace frontendLossSounds.Controllers
 {
@@ -122,16 +123,26 @@ namespace frontendLossSounds.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonResponse = await response.Content.ReadAsStringAsync();
-                    //Guardar datos del usuario en variables de sesion
+
+
                     var responseObject = JsonSerializer.Deserialize<LoginResponseModel>(jsonResponse);
 
-                    var userName = responseObject.Nombre_Usuario;
-                    var Rol = responseObject.ID_Rol;
+                    Settings userLogged = new Settings
+                    {
+                        NombreUsuario = responseObject.Nombre_Usuario,
+                        RolID = responseObject.ID_Rol
+                    };
 
-                    HttpContext.Session.SetString("UserName", userName);
-                    HttpContext.Session.SetInt32("Rol", Rol);
+                    #region Como usar las variables de sesión
+                    HttpContext.Session.SetString("UserLogged", JsonSerializer.Serialize(userLogged));
 
-                    return Json("Loggeo exitoso");
+                    //Para usar las propiedades del usuario loggeado
+                    Settings settings = JsonSerializer.Deserialize<Settings>(HttpContext.Session.GetString("UserLogged"));
+                    ViewBag.User = settings.NombreUsuario;
+                    ViewBag.Rol = settings.RolID;
+                    #endregion
+
+                    return Json("Bienvenido " + settings.NombreUsuario);
                 }
                 else
                 {

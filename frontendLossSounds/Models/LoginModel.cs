@@ -17,4 +17,10 @@
         public string UrlBaseApi{ get; set; }
 
     }
+
+    public class Settings
+    {
+        public string NombreUsuario { get; set; }
+        public int RolID { get; set; }
+    }
 }
