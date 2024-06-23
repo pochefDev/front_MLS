@@ -17,6 +17,7 @@ namespace frontendLossSounds.Controllers
 {
     public class HomeController : Controller
     {
+        #region Configurations
         private readonly ILogger<HomeController> _logger; 
 
         private BaseServices _services;
@@ -25,6 +26,7 @@ namespace frontendLossSounds.Controllers
             _logger = logger;
             _services = new BaseServices();
         }
+        #endregion
 
         public IActionResult Index()
         {
@@ -32,6 +34,11 @@ namespace frontendLossSounds.Controllers
         }
 
         public IActionResult SignUp()
+        {
+            return View();
+        }
+        
+        public IActionResult Unathorized()
         {
             return View();
         }
@@ -43,60 +50,82 @@ namespace frontendLossSounds.Controllers
         }
 
 
-
+        #region Register
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterModel newUser)
+        public async Task<ResponseData> Register(RegisterModel newUser)
         {
-            TokenModel tokenModel = await _services.GetToken();
-            try
+            var validatePass = _services.ValidatePassword(newUser.Contrasena);
+
+            if (validatePass.Success)
             {
-                var builder = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                IConfiguration configuration = builder.Build();
-
-                var uri = configuration["URL_Base_API"];
-                var idApp = configuration["ID_App"];
-
-                HttpClient client = new HttpClient()
+                try
                 {
-                    BaseAddress = new Uri(uri)
-                };
 
-                client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
-                string url = string.Format("/api/{0}","Register");
+                    TokenModel tokenModel = await _services.GetToken();
+
+                    #region Obtener recursos de appsettings.json
+                    var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    IConfiguration configuration = builder.Build();
+
+                    var uri = configuration["URL_Base_API"];
+                    var idApp = configuration["ID_App"];
+                    #endregion
+
+                    HttpClient client = new HttpClient()
+                    {
+                        BaseAddress = new Uri(uri)
+                    };
+
+                    client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
+                    string url = string.Format("/api/{0}", "Register");
 
 
-                string jsonContent = JsonSerializer.Serialize(newUser);
+                    string jsonContent = JsonSerializer.Serialize(newUser);
 
-                var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    var stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync(url, stringContent);
+                    HttpResponseMessage response = await client.PostAsync(url, stringContent);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var jsonResponse = await response.Content.ReadAsStringAsync();
-                    return Json(jsonResponse);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        return new ResponseData{ Success = true, Message = jsonResponse };
+
+                    }
+                    else
+                    {
+                        var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                        return new ResponseData { Success = false, Message = jsonResponse };
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    var jsonResponse = await response.Content.ReadAsStringAsync();
-                    return Json(jsonResponse);
+                    throw new Exception(ex.Message);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception(ex.Message);
+
+                return new ResponseData { Success= false, Message = validatePass.Message };
             }
         }
 
+        #endregion
+
+        #region Login
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel user)
+        public async Task<AccessModel> Login(LoginModel user)
         {
             TokenModel tokenModel = await _services.GetToken();
             try
             {
+
+
                 var builder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -145,12 +174,26 @@ namespace frontendLossSounds.Controllers
                     ViewBag.Rol = settings.RolID;
                     #endregion
 
-                    return Json("Bienvenido " + settings.NombreUsuario);
+                    AccessModel access = new AccessModel
+                    {
+                        Success = true,
+                        Message = $"Bienvenido {settings.NombreUsuario}",
+                        Data = null
+                    };
+
+                    return access;
                 }
                 else
                 {
+
                     var jsonResponse = await response.Content.ReadAsStringAsync();
-                    return Json(jsonResponse);
+                    AccessModel access = new AccessModel
+                    {
+                        Success = false,
+                        Message = jsonResponse,
+                        Data = null
+                    };
+                    return access;
                 }
             }
             catch (Exception ex)
@@ -158,6 +201,7 @@ namespace frontendLossSounds.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        #endregion
 
     }
 }

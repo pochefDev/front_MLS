@@ -1,0 +1,46 @@
+﻿@model List<GetUserResponse>
+@{
+    Layout = "~/Views/Shared/_LossSounsLayout.cshtml";
+}
+
+
+<div class="row align-items-center text-white">
+    <div class="col-lg-12 mt-4">
+        <h2>Usuarios</h2>
+
+        @Html.ActionLink("Agregar Usuario", "CreateUser", "User")
+    </div>
+
+
+
+    <div class="col-lg-12 mt-2">
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th>Nombre Usuario</th>
+                        <th>Rol</th>
+                        <th>Activo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre_Usuario</td>
+                            <td>@item.Rol</td>
+                            <td>@(item.Active ? "Activo" : "Inactivo")</td>
+                            <td>
+                                @Html.ActionLink("Editar", "UserEdit", "User", new { ID_User = item.ID_USUARIO }, null) <br />
+                                @Html.ActionLink("Eliminar", "DeleteUser", "User")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

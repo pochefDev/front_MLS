@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
@@ -84,7 +85,7 @@
                     <label>Contraseña</label>
                     <input type="password" id="password" placeholder="Ingresa tu contraseña..." class="campo" required />
 
-                    <input type="submit" class="botonOK" onclick="login()" value="Login"/>
+                    <input type="submit" class="botonOK" onclick="login()" value="Iniciar sesión"/>
                 </form>
 
                 <div class="d-flex justify-content-evenly">
@@ -115,7 +116,7 @@
         <hr class="text-light" />
 
         <div class="container text-light text-center ">
-            <p>Loss Sounds @@copyright 2024</p>
+            <p>Loss Sounds @@Copyright 2024</p>
 
         </div>
 
@@ -146,8 +147,12 @@
                 dataType: 'json',
                 data: jsonModel,
                 success: function (response) {
-                    alert(response);
-                    window.location.reload();
+                    if(response.success){
+                        alert(response.message);
+                        window.location.reload();
+                    }else{
+                        alert(response.message);
+                    }
                 }, error: function (error) {
                     alert(error);
                 }

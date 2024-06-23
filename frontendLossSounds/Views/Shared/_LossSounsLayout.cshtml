@@ -10,18 +10,38 @@
 
     <link rel="stylesheet" href="~/frontendLossSounds.styles.css" asp-append-version="true" />
     <style>
-        body{
-            background-color:#141414;
+        body {
+            background-color: #141414;
         }
-        main{
-            overflow-y:auto;
+
+        main {
+            overflow-y: auto;
+        }
+
+        
+        .linea-blanca {
+            border-bottom: 2px solid white; /* Línea blanca en la parte inferior */
         }
     </style>
-    
+
 </head>
 <body class="min-vh-100">
+    <nav>
+        <div class="row g-0 linea-blanca">
+            <div class="col-md-6">
+                <h3 class="text-light mx-4 mt-3 mb-3">
+                    LossSounds
+                </h3>
+            </div>
+
+            <div class="col-md-6 text-end">
+                <button class="btn btn-outline-danger mb-3 mt-3 me-4">Cerrar sesión</button>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-            @RenderBody()
+        @RenderBody()
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
