@@ -1,4 +1,27 @@
-﻿<!DOCTYPE html>
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@using System.Text.Json;
+@{
+    var httpContext = HttpContextAccessor.HttpContext;
+    //Usuario loggeado
+    Settings settings = JsonSerializer.Deserialize<Settings>(httpContext.Session.GetString("UserLogged"));
+
+    string saludo;
+    var hora = DateTime.Now.Hour;
+    if (hora < 12 && hora > 6)
+    {
+        saludo = "Buenos días";
+    }
+    else if (hora > 12 && hora < 20)
+    {
+        saludo = "Buenas tardes";
+    }
+    else
+    {
+        saludo = "Buenas noches";
+    }
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,23 +41,53 @@
             overflow-y: auto;
         }
 
-        
+
         .linea-blanca {
             border-bottom: 2px solid white; /* Línea blanca en la parte inferior */
         }
+
+
+        .input {
+            background-color: white;
+            outline: none;
+            border: solid 2px #6b2c88;
+            border-radius: 20px;
+            padding: 10px 20px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color .3s ease;
+        }
+
+            .input:hover {
+                background-color: plum;
+                border: none;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+            }
     </style>
 
 </head>
 <body class="min-vh-100">
     <nav>
-        <div class="row g-0 linea-blanca">
-            <div class="col-md-6">
-                <h3 class="text-light mx-4 mt-3 mb-3">
+        <div class="row g-0 linea-blanca align-items-center">
+            <div class="col-md-3 ">
+                <h3 class="text-light mx-4 mt-3">
                     LossSounds
                 </h3>
+
+                <div class="d-flex align-items-center mx-4">
+                    <h5 class="text-white">@saludo @settings.NombreUsuario</h5>
+                </div>
             </div>
 
-            <div class="col-md-6 text-end">
+            <div class="col-md-6">
+                <div class="mx-3 mt-3 mb-3 text-end">
+                    <input class="input" id="text-buscar" placeholder="Descubre nueva musica" type="text">
+                    <select class="input" id="opciones-cancion"></select>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 text-end">
                 <button class="btn btn-outline-danger mb-3 mt-3 me-4">Cerrar sesión</button>
             </div>
         </div>

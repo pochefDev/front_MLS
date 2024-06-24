@@ -149,12 +149,12 @@
                 success: function (response) {
                     if(response.success){
                         alert(response.message);
-                        window.location.reload();
+                        window.location.href = '@Url.Action("UserIndex", "User")';
                     }else{
                         alert(response.message);
                     }
-                }, error: function (error) {
-                    alert(error);
+                }, error: function () {
+                    alert("Ocurrio un error al iniciar sesión.");
                 }
             });
         }

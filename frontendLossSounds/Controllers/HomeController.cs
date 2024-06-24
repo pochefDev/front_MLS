@@ -1,17 +1,9 @@
 using frontendLossSounds.Models;
 using frontendLossSounds.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO; 
-using Microsoft.Extensions.Configuration; 
-using System.Net.Http;
-using System;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Http;
 
 namespace frontendLossSounds.Controllers
 {

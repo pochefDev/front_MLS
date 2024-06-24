@@ -3,6 +3,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Registrar IHttpContextAccessor
+builder.Services.AddHttpContextAccessor();
+
 // Agregar el servicio de sesión
 builder.Services.AddSession(options =>
 {
