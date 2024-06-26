@@ -1,6 +1,0 @@
-# Ignorar archivos generados automáticamente
-/obj/
-/bin/
-
-# Ignorar archivos de registro
-*.log
