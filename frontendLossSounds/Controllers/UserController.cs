@@ -199,6 +199,59 @@ namespace frontendLossSounds.Controllers
 
         #endregion
 
+        #region Delete
+
+        [HttpPost]
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ResponseData> DeleteUser(string ID_User)
+        {
+            try
+            {
+                TokenModel tokenModel = await _services.GetToken();
+
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                IConfiguration configuration = builder.Build();
+
+                var uri = configuration["URL_Base_API"];
+
+                HttpClient client = new HttpClient()
+                {
+                    BaseAddress = new Uri(uri)
+                };
+
+                client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
+                string url = "/api/DeleteUser";
+
+                string jsonContent = JsonSerializer.Serialize(ID_User);
+
+                StringContent stringContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+
+                HttpResponseMessage response = await client.PostAsync(url, stringContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                    return new ResponseData { Success = true, Message = jsonResponse };
+                }
+                else
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    return new ResponseData { Success = false, Message = jsonResponse };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        #endregion
+
         #region Resources
 
         public async Task<IActionResult> GetUsers(string ID_User = null)

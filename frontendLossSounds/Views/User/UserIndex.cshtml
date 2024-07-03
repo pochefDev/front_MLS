@@ -32,9 +32,8 @@
                             <td>@item.Rol</td>
                             <td>@(item.Active ? "Activo" : "Inactivo")</td>
                             <td>
-                                <button class="btn btn-link" onclick="fnEditUser(@item.ID_USUARIO)">Editar</button>
-@*                                 @Html.ActionLink("Editar", "EditUser", "User", new { ID_User = item.ID_USUARIO }, null) <br />
- *@                                @Html.ActionLink("Eliminar", "DeleteUser", "User")
+                                <button class="btn btn-primary" onclick="fnEditUser(@item.ID_USUARIO)">Editar</button>
+                                <button class="btn btn-danger" onclick="fnDeleteUser(@item.ID_USUARIO)">Eliminar</button>
                             </td>
                         </tr>
                     }
@@ -62,6 +61,29 @@
     function fnEditUser(idUsuario) {
         var encryptedId = encrypt(idUsuario.toString());
         window.location.href = '@Url.Action("UserEdit", "User")?ID_User=' + encodeURIComponent(encryptedId);
+    }
+
+    function fnDeleteUser(idUsuario){
+        if (confirm("Estas seguro de eliminar este usuario?")) {
+
+            var encryptedId = encrypt(idUsuario.toString());
+
+            $.ajax({
+                url: '@Url.Action("DeleteUser", "User")',
+                type: 'POST',
+                data: { ID_User: encryptedId },
+                success: function (response) {
+                    alert(response.message);
+
+                    if (response.success) {
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Ocurrio un error. Intente más tarde.");
+                }
+            });
+        }
     }
 
 
