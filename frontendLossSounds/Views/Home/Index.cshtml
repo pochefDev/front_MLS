@@ -148,7 +148,7 @@
                 data: jsonModel,
                 success: function (response) {
                     if(response.success){
-                        alert(response.message);
+                        //alert(response.message);
                         window.location.href = '@Url.Action("UserIndex", "User")';
                     }else{
                         alert(response.message);

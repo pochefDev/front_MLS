@@ -24,10 +24,11 @@
 
     public class RolesResponseModel
     {
-        public int ID_Rol { get; set; }
+        public int ID_ROL { get; set; }
         public string Rol { get; set; }
         public string Description { get; set; }
     }
+
 
     public static class Role
     {

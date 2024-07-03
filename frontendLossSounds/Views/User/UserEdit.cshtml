@@ -5,7 +5,7 @@
 
 <div class="row text-white">
     <div class="col-lg-12 ">
-        <h2 class="mt-4">Agregar Usuario</h2>
+        <h2 class="mt-4">Editar Usuario</h2>
     </div>
     <br />
     <form>
@@ -45,9 +45,62 @@
                 }
             </div>
 
-            <button type="button" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-success" onclick="fnEditUser(@item.ID_USUARIO)">Guardar</button>
         }
     </form>
 
-    @Html.ActionLink("Regresar al listado", "UserIndex", "User")
 </div>
+  @Html.ActionLink("Regresar al listado", "UserIndex", "User")
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script type="text/javascript">
+
+    // $(document).ready(function () {
+
+    // });
+
+    function encrypt(text) {
+        var key = CryptoJS.enc.Utf8.parse("abc123abc123abc123abc123abc12312"); // 32 bytes key
+        var iv = CryptoJS.enc.Utf8.parse("1234567890123456"); // 16 bytes IV
+
+        var encrypted = CryptoJS.AES.encrypt(text, key, {
+            keySize: 256 / 32,
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+
+        return encrypted.toString();
+    }
+
+    function fnEditUser(UserID) {
+        var jsonModel = {
+            "Nombre_Usuario": document.getElementById('UserName').value,
+            "ID_Rol": document.getElementById('rol').value,
+            "Active": document.getElementById('Active').checked
+        }
+
+        var userIdEncrypt = encrypt(UserID.toString());
+        console.log("Texto cifrado antes de enviar: ", userIdEncrypt);  // <-- Agrega esta línea para depuración
+
+        $.ajax({
+            url: '@Url.Action("UserEdit", "User")',
+            type: 'POST',
+            dataType: 'json',
+            data: { ID_User: encodeURIComponent(userIdEncrypt), EditUser: jsonModel }, // Utiliza encodeURIComponent
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    window.location.href = '@Url.Action("UserIndex", "User")';
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function () {
+                console.log("Error en la solicitud AJAX.");
+            }
+        });
+    }
+
+
+</script>

@@ -8,7 +8,7 @@
     <div class="col-lg-12 mt-4">
         <h2>Usuarios</h2>
 
-        @Html.ActionLink("Agregar Usuario", "CreateUser", "User")
+        @Html.ActionLink("Agregar Usuario", "UserCreate", "User")
     </div>
 
 
@@ -32,8 +32,9 @@
                             <td>@item.Rol</td>
                             <td>@(item.Active ? "Activo" : "Inactivo")</td>
                             <td>
-                                @Html.ActionLink("Editar", "UserEdit", "User", new { ID_User = item.ID_USUARIO }, null) <br />
-                                @Html.ActionLink("Eliminar", "DeleteUser", "User")
+                                <button class="btn btn-link" onclick="fnEditUser(@item.ID_USUARIO)">Editar</button>
+@*                                 @Html.ActionLink("Editar", "EditUser", "User", new { ID_User = item.ID_USUARIO }, null) <br />
+ *@                                @Html.ActionLink("Eliminar", "DeleteUser", "User")
                             </td>
                         </tr>
                     }
@@ -42,5 +43,28 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+<script>
+    function encrypt(plainText, key = "abc123abc123abc123abc123abc12312", ivString = "1234567890123456") {
+        var keyUtf8 = CryptoJS.enc.Utf8.parse(key);
+        var ivUtf8 = CryptoJS.enc.Utf8.parse(ivString);
+
+        var encrypted = CryptoJS.AES.encrypt(plainText, keyUtf8, {
+            iv: ivUtf8,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+
+        return encrypted.toString();
+    }
+
+    function fnEditUser(idUsuario) {
+        var encryptedId = encrypt(idUsuario.toString());
+        window.location.href = '@Url.Action("UserEdit", "User")?ID_User=' + encodeURIComponent(encryptedId);
+    }
+
+
+</script>
 
 

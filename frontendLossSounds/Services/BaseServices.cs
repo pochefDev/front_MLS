@@ -43,14 +43,13 @@ namespace frontendLossSounds.Services
                 else
                 {
                     throw new Exception("Error al solicitar el token");
+                    
                 }
             }
             catch (Exception ex) 
             {
                 throw new Exception(ex.Message);
             }
-
-            return tokenModel;
         }
 
         public ResponseData ValidatePassword(string password)
