@@ -69,84 +69,155 @@
 
 <div class="row">
     <div class="col-lg-12">
-    <div class="mt-2 cabezera">
-        <div class="align-items-center">
-            <h3 class="text-light">
-                LossSounds music
-            </h3>
+        <div class="mt-2 cabezera">
+            <div class="align-items-center">
+                <h3 class="text-light">
+                    LossSounds music
+                </h3>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 
 <div class="row d-flex justify-content-center text-white">
-            <div class="col-lg-6">
-            <div class="p-3 sombra mt-5">
-                <h1 class="fw-bold">Unirme a <span class="LossSounds">LossSounds</span></h1>
-                <div class="d-flex flex-column p-3">
-                    <label>Nuevo usuario</label>
-                    <input type="text" id="name" placeholder="Mi nuevo usuario..." class="campo" required />
+    <div class="col-lg-6">
+        <div class="p-3 sombra mt-5">
+            <h1 class="fw-bold">Unirme a <span class="LossSounds">LossSounds</span></h1>
+            <div class="d-flex flex-column p-3">
+                <label>Nuevo usuario</label>
+                <input type="text" id="name" placeholder="Mi nuevo usuario..." class="campo" required />
 
-                    <label>Contraseña</label>
-                    <input type="password" id="password" placeholder="Ingresa mi contraseña..." class="campo" required />
+                <label>Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresa mi contraseña..." class="campo" required />
 
-                    <label>Confirmar contraseña</label>
-                    <input type="password" id="passswordConfirmed" placeholder="Ingresar para confirmar..." class="campo" required />
-                    <input type="number" id="Rol" hidden value="3">
+                <label>Confirmar contraseña</label>
+                <input type="password" id="passswordConfirmed" placeholder="Ingresar para confirmar..." class="campo" required />
+                <input type="number" id="Rol" hidden value="3">
 
 
-                    <input type="submit" class="botonOK" onclick="register()" value="Registrarme">
-                </div>
-
-                <div class="d-flex justify-content-evenly">
-                    <p>Tienes una cuenta?</p>
-                    <a asp-controller="Home" asp-action="Index" class="vinculo" > Iniciar Sesion </a>
-                </div>
-                    </div>
-        </div>
-
-        <footer class="m-3 fixed-bottom align-items-center">
-            <hr class="text-light" />
-
-            <div class="container text-light text-center ">
-                <p>Loss Sounds @@copyright 2024</p>
-
+                <input type="submit" class="botonOK" onclick="register()" value="Registrarme">
             </div>
 
-        </footer>
+            <div class="d-flex justify-content-evenly">
+                <p>Tienes una cuenta?</p>
+                <a asp-controller="Home" asp-action="Index" class="vinculo"> Iniciar Sesion </a>
+            </div>
+            
+            <div class="d-flex justify-content-evenly">
+                <button class="btn btn-link" id="btnPrivacyPolicy">Politica de privacidad </button>
+            </div>
+            
+            <div class="d-flex justify-content-center">
+                <input type="checkbox" id="AcceptPrivacyPolicy" /><label>Aceptar politica</label>
+            </div>
+        </div>
     </div>
+
+    <div class="col-lg-12" id="PrivacyPolicy"></div>
+
+    <footer class="m-3 fixed-bottom align-items-center">
+        <hr class="text-light" />
+
+        <div class="container text-light text-center ">
+            <p>Loss Sounds @@copyright 2024</p>
+
+        </div>
+
+    </footer>
+</div>
+
+
+<!-- Modal Privacy Policy-->
+<div class="modal fade" id="PrivacyPolicyModal" tabindex="-1" aria-labelledby="PrivacyPolicyModal<" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="PrivacyPolicyModal">Politica de Privacidad</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h1>Política de Privacidad</h1>
+                <p>Última actualización: 04 de Junio del 2024</p>
+
+                <p>En LossSounds, nos tomamos muy en serio la privacidad de nuestros usuarios</p>
+
+                <h2>Datos que Recopilamos</h2>
+                <p>Recopilamos unicamente los siguientes datos personales:
+                    <ul>
+                        <li>Nombre de usuario</li>
+                        <li>Contraseña</li>
+                    </ul>
+                </p>
+
+                <h2>Uso de los Datos</h2>
+                <p>Usamos los datos recopilados para:
+                    <ul>
+                        <li>Acceder a la plataforma</li>
+                        <li>Acceder a tu nombre de usuario en la aplicación</li>
+                    </ul>
+                </p>
+
+                <p>No compartimos datos con ningun tercero</p>
+
+                <h2>Seguridad de los Datos</h2>
+                <p>Implementamos medidas de seguridad a traves de la encriptación AES</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="continue" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(document).ready(function () {
-        
+        $('#btnPrivacyPolicy').click(function(){
+            $('#PrivacyPolicyModal').modal('show');
+        })
+
+        $('#continue').on('click', function () {
+            $('#AcceptPrivacyPolicy').prop('checked', true);
+        });
     });
 
     function register() {
-        var jsonModel = {
-            "NombreUsuario": document.getElementById('name').value,
-            "Contrasena": document.getElementById('password').value,
-            "ConfirmPassword": document.getElementById('passswordConfirmed').value,
-            "ID_Rol": 3
-        }
 
-        $.ajax({
-            url: '@Url.Action("Register", "Home")',
-            type: 'POST',
-            dataType: 'json',
-            data: jsonModel,
-            success: function (response) {
-                if (response.success) {
-                    alert(response.message);
-                    window.location.href = '@Url.Action("Index", "Home")';
-                }
-                else {
-                    alert(response.message);
-                }
+        var AcceptPrivacyPolicy = document.getElementById('AcceptPrivacyPolicy').checked;
 
-            }, error: function (error) {
-                alert(error);
+        if (AcceptPrivacyPolicy) {
+
+            var jsonModel = {
+                "NombreUsuario": document.getElementById('name').value,
+                "Contrasena": document.getElementById('password').value,
+                "ConfirmPassword": document.getElementById('passswordConfirmed').value,
+                "ID_Rol": 3
             }
-        });
+
+            $.ajax({
+                url: '@Url.Action("Register", "Home")',
+                type: 'POST',
+                dataType: 'json',
+                data: jsonModel,
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        window.location.href = '@Url.Action("Index", "Home")';
+                    }
+                    else {
+                        alert(response.message);
+                    }
+
+                }, error: function (error) {
+                    alert(error);
+                }
+            });
+        } else {
+            alert("Para poder registrarse se debe de aceptar la poltica de privacidad.")
+        }
     }
+
+    
+
 </script>

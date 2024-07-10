@@ -35,6 +35,11 @@ namespace frontendLossSounds.Controllers
             return View();
         }
 
+        public PartialViewResult PrivacyPolicy()
+        {
+            return PartialView();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -192,6 +197,15 @@ namespace frontendLossSounds.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            Settings settings = JsonSerializer.Deserialize<Settings>(HttpContext.Session.GetString("UserLogged"));
+
+            settings = null;
+
+            return RedirectToAction("Index");
         }
         #endregion
 

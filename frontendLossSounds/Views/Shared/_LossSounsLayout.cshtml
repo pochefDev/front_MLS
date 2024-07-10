@@ -88,7 +88,10 @@
 
 
             <div class="col-md-3 text-end">
-                <button class="btn btn-outline-danger mb-3 mt-3 me-4">Cerrar sesión</button>
+                <form action="/Home/LogOut" method="post">
+                    <button type="submit" class="btn btn-outline-danger mb-3 mt-3 me-4">Cerrar sesión</button>
+                </form>
+
             </div>
         </div>
     </nav>

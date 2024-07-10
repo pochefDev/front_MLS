@@ -1,0 +1,179 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@using System.Text.Json;
+@{
+    var httpContext = HttpContextAccessor.HttpContext;
+    //Usuario loggeado
+    Settings settings = JsonSerializer.Deserialize<Settings>(httpContext.Session.GetString("UserLogged"));
+
+    string saludo;
+    var hora = DateTime.Now.Hour;
+    if (hora < 12 && hora > 6)
+    {
+        saludo = "Buenos días";
+    }
+    else if (hora > 12 && hora < 20)
+    {
+        saludo = "Buenas tardes";
+    }
+    else
+    {
+        saludo = "Buenas noches";
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - frontendLossSounds</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css.map" rel="stylesheet" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/frontendLossSounds.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #141414;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            overflow-y: auto;
+        }
+
+        .linea-blanca {
+            border-bottom: 1px solid plum; /* Línea purpura en la parte inferior */
+        }
+
+        .input {
+            background-color: black;
+            outline: none;
+            border: solid 2px #6b2c88;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background-color .3s ease;
+        }
+
+        input::placeholder {
+            color: white;
+        }
+
+            .input:hover {
+                background-color: plum;
+                border: none;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+            }
+
+        .linea-blanca-aside {
+            border-right: 0.1px solid gray; /* Línea blanca en la parte derecha */
+            height: 100vh; /* Ajustar la altura para que coincida con el contenido principal */
+        }
+
+
+        /* General styles for responsiveness */
+        .responsive-text {
+            font-size: 1.3vw; /* Adjust this value as needed */
+        }
+
+        .responsive-input {
+            width: 75%;
+            height: 2vw;
+            font-size: 0.8vw; /* Adjust this value as needed */
+        }
+        
+        .responsive-select {
+            width: 20%;
+            height: 2vw;
+            
+        }
+
+        .responsive-button {
+            font-size: 1vw; /* Adjust this value as needed */
+        }
+
+        /* Optional: Additional media queries for finer control */
+        @@media (max-width: 1000px) { /*Cuando es menor o igual a 400px el tamaño de la pantalla se usa el media*/
+            .responsive-text {
+                font-size: 2.5vw;
+            }
+
+            .responsive-input {
+                font-size: 1.5vw;
+                height: 20px;
+            }
+
+            .responsive-select {
+                height: 20px;
+                font-size: 1.0vw; /* Adjust this value as needed */
+            }
+
+            .responsive-button {
+                font-size: 1.7vw;
+            }
+        }
+
+
+    </style>
+
+</head>
+<body class="container-fluid m-0 p-0">
+
+    <div class="">
+        <div class="row m-0 p-0">
+            <div class="col-12 m-0 p-0 nav-container">
+                <nav>
+                    <div class="row g-0 align-items-center">
+                        <div class="col-4">
+                            <h3 class="text-light mx-4 mt-3 responsive-text">
+                                LossSounds
+                            </h3>
+                            <div class="d-flex align-items-center mx-4">
+                                <h5 class="text-white responsive-text">@saludo @settings.NombreUsuario</h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mx-3 mt-3 mb-3 text-end d-flex justify-content-center">
+                                <input class="input responsive-input" id="text-buscar" placeholder="Descubre nueva musica" type="text">
+                                <select class="input responsive-select" id="opciones-cancion"></select>
+                            </div>
+                        </div>
+                        <div class="col-2 text-end">
+                            <form action="/Home/LogOut" method="post">
+                                <button type="submit" class="btn btn-outline-danger mb-3 mt-3 me-4 responsive-button">Cerrar sesión</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray" class="m-0 p-0">
+
+            <div class="col-3 m-0 p-3 linea-blanca-aside">
+                <aside>
+                    <div class="row">
+                        <div class="col align-self-start">
+                            <div class="position-relative">
+                                <div class="position-absolute top-50 start-0">
+                                    <h3 class="text-white responsive-text">Albumes</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="col-9 m-0 p-2">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

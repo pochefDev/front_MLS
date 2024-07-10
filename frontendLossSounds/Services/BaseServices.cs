@@ -52,6 +52,7 @@ namespace frontendLossSounds.Services
             }
         }
 
+
         public ResponseData ValidatePassword(string password)
         {
             // Lista de validaciones con los respectivos mensajes de error
