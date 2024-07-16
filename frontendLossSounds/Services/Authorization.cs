@@ -64,6 +64,11 @@ namespace frontendLossSounds.Services
 
         private bool IsRoleAuthorized(int userRolID, string requiredRole)
         {
+            if(requiredRole == Role.DEFAULT)
+            {
+                return true;
+            }
+
             switch (userRolID)
             {
                 case 1: // IT_ADMIN

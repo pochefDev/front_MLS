@@ -35,5 +35,6 @@
         public const string IT_ADMIN = "IT_ADMIN";
         public const string ADMIN = "ADMIN";
         public const string USER = "USER";
+        public const string DEFAULT = "Default";
     }
 }
