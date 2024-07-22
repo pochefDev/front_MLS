@@ -1,4 +1,62 @@
 ﻿@{
     Layout = "~/Views/Shared/_MenuLayout.cshtml";
 }
- <h3 class="text-white">Pagina principal</h3>
+<style>
+    .button-card{
+        width: 14vw;
+    }
+
+    .card-cancion{
+        width: 14vw;
+        background-color: black;
+        border: solid 1px plum;
+    }
+
+    .nombre-cancion{
+        font-size: 0.9vw;
+        color: white;
+        font-weight: bold;
+    }
+
+    .nombre-album{
+        font-size: 0.8vw;
+        color: white;
+    }
+
+    .nombre-artista{
+        font-size: 0.8vw;
+        color: white;
+    }
+
+</style>
+
+<div class="row ms-2">
+    <div class="col-12">
+        <h3 class="text-white">Recomendaciones</h3>
+
+        @foreach (var song in (List<CancionData>)ViewBag.RecommendedSongs)
+        {
+            <button class="btn btn-dark button-card p-0 mt-1">
+                <div class="card text-center card-cancion p-0">
+                    <img src="data:image/png;base64,@song.Caratula_Cancion_Base64" class="card-img-top" alt="Imagen Cancion">
+                    <div class="card-body">
+                        <p class="card-text nombre-cancion m-0">@song.Nombre_Cancion</p>
+                        <p class="card-text nombre-artista m-0">@song.Nombre_Artista</p>
+                        <p class="card-text nombre-album m-0">@song.Nombre_Album</p>
+                    </div>
+                </div>
+            </button>
+            
+        }
+        
+    </div>
+</div>
+
+
+<div class="row ms-2 mt-5">
+    <div class="col-12">
+        <h3 class="text-white">Novedades</h3>
+
+
+    </div>
+</div>
