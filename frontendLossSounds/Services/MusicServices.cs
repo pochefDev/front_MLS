@@ -16,7 +16,7 @@ namespace frontendLossSounds.Services
         }
         #endregion
 
-        public async Task<dynamic> GetSongs(int? ID_Cancion, bool? fileContent)
+        public async Task<dynamic> GetSongs(int? ID_Cancion)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace frontendLossSounds.Services
                 };
 
                 client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
-                string url = $"api/Canciones?ID_Cancion={ID_Cancion}&fileContent={fileContent}";
+                string url = $"api/Canciones?ID_Cancion={ID_Cancion}";
 
                 var response = await client.GetAsync(url);
 
@@ -44,6 +44,49 @@ namespace frontendLossSounds.Services
 
                     var jsonResponse = await response.Content.ReadAsStringAsync();
                     var responseObject = JsonSerializer.Deserialize<List<CancionData>>(jsonResponse);
+                    return responseObject;
+                }
+                else
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    return jsonResponse;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        
+        public async Task<dynamic> GetSongData(int ID_Cancion)
+        {
+            try
+            {
+                TokenModel tokenModel = await _services.GetToken();
+
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                IConfiguration configuration = builder.Build();
+
+                var uri = configuration["URL_Base_API"];
+
+                HttpClient client = new HttpClient()
+                {
+                    BaseAddress = new Uri(uri)
+                };
+
+                client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
+                string url = $"api/GetSongData?ID_Cancion={ID_Cancion}";
+
+                var response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var responseObject = JsonSerializer.Deserialize<CancionData>(jsonResponse);
                     return responseObject;
                 }
                 else

@@ -37,10 +37,18 @@
             background-color: #141414;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
 
         main {
-            overflow-y: auto;
+            scrollbar-color: plum;
+            scrollbar-width: none;
+        }
+
+        main {
+            overflow: scroll;
         }
 
         .linea-blanca {
@@ -69,9 +77,11 @@
 
         .linea-blanca-aside {
             border-right: 0.1px solid gray; /* Línea blanca en la parte derecha */
-            height: 100vh; /* Ajustar la altura para que coincida con el contenido principal */
         }
 
+        .linea-blanca-bottom {
+            border-bottom: 0.1px solid gray; /* Línea blanca en la parte derecha */
+        }
 
         /* General styles for responsiveness */
         .responsive-text {
@@ -82,7 +92,7 @@
             font-size: 0.7vw;
         }
 
-        .responsive-text-h5{
+        .responsive-text-h5 {
             font-size: 0.8vw;
         }
 
@@ -102,7 +112,7 @@
         }
 
         /* Optional: Additional media queries for finer control */
-        @@media (max-width: 1000px) { /*Cuando es menor o igual a 400px el tamaño de la pantalla se usa el media*/
+        @@media (max-width: 1000px) {
             .responsive-text {
                 font-size: 2.5vw;
             }
@@ -129,60 +139,61 @@
                 font-size: 1.3vw;
             }
         }
-
     </style>
-
 </head>
-<body class="container-fluid m-0 p-0">
+<body class="container-fluid">
 
-    <div class="">
-        <div class="row m-0 p-0">
-            <div class="col-12 m-0 p-0 nav-container">
-                <nav>
-                    <div class="row g-0 align-items-center">
-                        <div class="col-2">
-                            <h3 class="text-light mx-4 mt-3 responsive-text">
-                                LossSounds
-                            </h3>
-                            <div class="d-flex align-items-center mx-4">
-                                <h5 class="text-white responsive-text">@saludo @settings.NombreUsuario</h5>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <div class="row align-items-center">
-                                <div class="col-6">
-                                    @if (ViewBag.Weather != null)
-                                    {
-                                        <div class="weather-info text-white ms-5">
-                                            <h5 class="responsive-text-h5 p-0 m-1">Tiempo actual</h5>
-                                            <p class="response-text-weather p-0 m-0">Locación: @ViewBag.Weather.Name</p>
-                                            <p class="response-text-weather p-0 m-0">Temperatura: @ViewBag.Weather.Main.Temp °K</p>
-                                            <p class="response-text-weather p-0 m-0">Sensación termica: @ViewBag.Weather.Main.Feels_Like °K</p>
-                                            <p class="response-text-weather p-0 m-0">Humidad: @ViewBag.Weather.Main.Humidity %</p>
-                                        </div>
-                                    }
-                                </div>
-                                <div class="col-6">
-                                    <div class="mx-3 mt-3 mb-3 text-end d-flex justify-content-center">
-                                        <input class="input responsive-input" id="text-buscar" placeholder="Descubre nueva musica" type="text">
-                                        <select class="input responsive-select" id="opciones-cancion"></select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col-1 text-end">
-                            <form action="/Home/LogOut" method="post">
-                                <button type="submit" class="btn btn-outline-danger mb-3 mt-3 me-4 responsive-button">Cerrar sesión</button>
-                            </form>
+    <div class="row" style="height: 10%;">
+        <div class="col-12 nav-container">
+            <nav>
+                <div class="row g-0 align-items-center">
+                    <div class="col-2">
+                        <h3 class="text-light mx-4 mt-3 responsive-text">
+                            LossSounds
+                        </h3>
+                        <div class="d-flex align-items-center mx-4">
+                            <h5 class="text-white responsive-text">@saludo @settings.NombreUsuario</h5>
                         </div>
                     </div>
-                </nav>
-            </div>
+                    <div class="col-9">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                @if (ViewBag.Weather != null)
+                                {
+                                    <div class="weather-info text-white ms-5">
+                                        <h5 class="responsive-text-h5 p-0 m-1">Tiempo actual</h5>
+                                        <p class="response-text-weather p-0 m-0">Locación: @ViewBag.Weather.Name</p>
+                                        <p class="response-text-weather p-0 m-0">Temperatura: @ViewBag.Weather.Main.Temp °K</p>
+                                        <p class="response-text-weather p-0 m-0">Sensación termica: @ViewBag.Weather.Main.Feels_Like °K</p>
+                                        <p class="response-text-weather p-0 m-0">Humidad: @ViewBag.Weather.Main.Humidity %</p>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-6">
+                                <div class="mx-3 mt-3 mb-3 text-end d-flex justify-content-center">
+                                    <input class="input responsive-input" id="text-buscar" placeholder="Descubre nueva musica" type="text">
+                                    <select class="input responsive-select" id="opciones-cancion"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-            <hr style="height:2px;border-width:0;color:gray;background-color:gray" class="m-0 p-0">
+                    <div class="col-1 text-end">
+                        <form action="/Home/LogOut" method="post">
+                            <button type="submit" class="btn btn-outline-danger mb-3 mt-3 me-4 responsive-button">Cerrar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 
-            <div class="col-3 m-0 p-3 linea-blanca-aside">
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray" class="m-0 p-0">
+
+    <main>
+        <div class="row" style="height: 80%;">
+            <div class="col-3 linea-blanca-aside">
                 <aside>
                     <div class="row">
                         <div class="col align-self-start">
@@ -196,15 +207,24 @@
                 </aside>
             </div>
 
-            <div class="col-9 m-0 p-2">
+            <div class="col-9">
                 @RenderBody()
             </div>
         </div>
-    </div>
+    </main>
+
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray" class="m-0 p-0">
+
+    <footer style="height: 10%;">
+        <audio id="audioPlayer" controls>
+            Your browser does not support the audio element.
+        </audio>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    
 </body>
 </html>

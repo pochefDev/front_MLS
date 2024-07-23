@@ -2,61 +2,103 @@
     Layout = "~/Views/Shared/_MenuLayout.cshtml";
 }
 <style>
-    .button-card{
+    .button-card {
         width: 14vw;
     }
 
-    .card-cancion{
+    .card-cancion {
         width: 14vw;
         background-color: black;
         border: solid 1px plum;
     }
 
-    .nombre-cancion{
+    .nombre-cancion {
         font-size: 0.9vw;
         color: white;
         font-weight: bold;
     }
 
-    .nombre-album{
+    .nombre-album {
         font-size: 0.8vw;
         color: white;
     }
 
-    .nombre-artista{
+    .nombre-artista {
         font-size: 0.8vw;
         color: white;
     }
+
+    
 
 </style>
 
-<div class="row ms-2">
-    <div class="col-12">
-        <h3 class="text-white">Recomendaciones</h3>
 
-        @foreach (var song in (List<CancionData>)ViewBag.RecommendedSongs)
-        {
-            <button class="btn btn-dark button-card p-0 mt-1">
-                <div class="card text-center card-cancion p-0">
-                    <img src="data:image/png;base64,@song.Caratula_Cancion_Base64" class="card-img-top" alt="Imagen Cancion">
-                    <div class="card-body">
-                        <p class="card-text nombre-cancion m-0">@song.Nombre_Cancion</p>
-                        <p class="card-text nombre-artista m-0">@song.Nombre_Artista</p>
-                        <p class="card-text nombre-album m-0">@song.Nombre_Album</p>
+    <div class="row ms-2 mt-2">
+        <div class="col-12">
+            <h3 class="text-white">Recomendaciones</h3>
+
+            @foreach (var song in (List<CancionData>)ViewBag.RecommendedSongs)
+            {
+                <button class="btn btn-dark button-card p-0 mt-1 me-4 btnSong">
+                    <div class="card text-center card-cancion p-0">
+                        <img src="data:image/png;base64,@song.Caratula_Cancion_Base64" class="card-img-top" alt="Imagen Cancion">
+                        <div class="card-body">
+                            <input class="idSong" hidden type="number" value="@song.ID_Cancion"/>
+                            <p class="card-text nombre-cancion m-0">@song.Nombre_Cancion</p>
+                            <p class="card-text nombre-artista m-0">@song.Nombre_Artista</p>
+                            <p class="card-text nombre-album m-0">@song.Nombre_Album</p>
+                        </div>
                     </div>
-                </div>
-            </button>
-            
-        }
-        
+                </button>
+            }
+        </div>
     </div>
-</div>
 
+    <div class="row ms-2 mt-5">
+        <div class="col-12">
+            <h3 class="text-white">Novedades</h3>
 
-<div class="row ms-2 mt-5">
-    <div class="col-12">
-        <h3 class="text-white">Novedades</h3>
-
-
+            @foreach (var song in (List<CancionData>)ViewBag.RecommendedSongs)
+            {
+                <button class="btn btn-dark button-card p-0 mt-1 me-4">
+                    <div class="card text-center card-cancion p-0">
+                        <img src="data:image/png;base64,@song.Caratula_Cancion_Base64" class="card-img-top" alt="Imagen Cancion">
+                        <div class="card-body">
+                            <input id="idSong" hidden type="number" value="@song.ID_Cancion" />
+                            <p class="card-text nombre-cancion m-0">@song.Nombre_Cancion</p>
+                            <p class="card-text nombre-artista m-0">@song.Nombre_Artista</p>
+                            <p class="card-text nombre-album m-0">@song.Nombre_Album</p>
+                        </div>
+                    </div>
+                </button>
+            }
+        </div>
     </div>
-</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('click', '.btnSong', function () {
+            var audioPlayer = $("#audioPlayer")[0];
+            var idSong = $(this).find('.idSong').val();
+
+            $.ajax({
+                url: '@Url.Action("GetSongData", "Music")',
+                type: 'GET',
+                data: { ID_Cancion: idSong },
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function (response) {
+                    var url = URL.createObjectURL(response);
+                    audioPlayer.src = url;
+                    audioPlayer.load();
+                    audioPlayer.play();
+                },
+                error: function () {
+                    alert('Ocurrió un error al recuperar la información del archivo solicitado.');
+                }
+            });
+        });
+    });
+</script>

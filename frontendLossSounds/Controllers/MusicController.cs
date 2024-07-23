@@ -25,7 +25,7 @@ namespace frontendLossSounds.Controllers
         public async Task<IActionResult> Index()
         {
             //var weather = await _weatherService.GetWeather("Aguascalientes");
-            List<CancionData> songs = await _musicServices.GetSongs(null, false);
+            List<CancionData> songs = await _musicServices.GetSongs(null);
 
             songs = songs.Take(10).ToList();
             foreach (var song in songs)
@@ -43,7 +43,14 @@ namespace frontendLossSounds.Controllers
 
         #region Resources
 
+        public async Task<IActionResult> GetSongData(int ID_Cancion)
+        {
+            CancionData song = await _musicServices.GetSongData(ID_Cancion);
 
+
+            var fileContent = song.File_Content;
+            return File(fileContent, "audio/flac", $"{song.Nombre_Cancion}.flac");
+        }
 
         #endregion
     }
