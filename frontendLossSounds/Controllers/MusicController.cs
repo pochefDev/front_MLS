@@ -21,11 +21,12 @@ namespace frontendLossSounds.Controllers
         }
         #endregion
 
-        [Authorize(Role.DEFAULT)]
+        //[Authorize(Role.DEFAULT)]
         public async Task<IActionResult> Index()
         {
             //var weather = await _weatherService.GetWeather("Aguascalientes");
             List<CancionData> songs = await _musicServices.GetSongs(null);
+            List<AlbumInfo> albums = await _musicServices.GetAlbumsInfo();
 
             songs = songs.Take(10).ToList();
             foreach (var song in songs)
@@ -33,7 +34,13 @@ namespace frontendLossSounds.Controllers
                 song.Caratula_Cancion_Base64 = Convert.ToBase64String(song.Caratula_Cancion);
             }
 
+            foreach(var album in albums)
+            {
+                album.Caratula_Album_Base64 = Convert.ToBase64String(album.Caratula_Album);
+            }
+
             ViewBag.RecommendedSongs = songs;
+            ViewBag.Albums = albums;
             ViewBag.Weather = null;//weather;
 
             return View();
@@ -43,14 +50,36 @@ namespace frontendLossSounds.Controllers
 
         #region Resources
 
+        #region Songs
+        //[Authorize(Role.DEFAULT)]
         public async Task<IActionResult> GetSongData(int ID_Cancion)
         {
-            CancionData song = await _musicServices.GetSongData(ID_Cancion);
+            byte[] song = await _musicServices.GetSongData(ID_Cancion);
 
 
-            var fileContent = song.File_Content;
-            return File(fileContent, "audio/flac", $"{song.Nombre_Cancion}.flac");
+            return File(song, "audio/flac", $"cancion.flac");
         }
+
+        //[Authorize(Role.DEFAULT)]
+        public async Task<JsonResult> GetSongInfo(int ID_Cancion)
+        {
+            List<CancionData> song = await _musicServices.GetSongInfo(ID_Cancion);
+
+            return Json(song.FirstOrDefault());
+        }
+
+        #endregion
+
+        #region Albums
+
+        public async Task<JsonResult> GetAlbumsInfo()
+        {
+            List<AlbumInfo> albums = await _musicServices.GetAlbumsInfo();
+
+            return Json(albums);
+        }
+
+        #endregion
 
         #endregion
     }
