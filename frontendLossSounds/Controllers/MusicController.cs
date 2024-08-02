@@ -46,7 +46,29 @@ namespace frontendLossSounds.Controllers
             return View();
         }
 
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ActionResult> CatalogMusicIndex()
+        {
+            List<CancionData> songs = await _musicServices.GetSongs(null);
 
+            return View(songs);
+        }
+
+
+        [Authorize(Role.IT_ADMIN)]
+        public PartialViewResult CreateSong()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ResponseData> DeleteSong(int ID_Song)
+        {
+            var response = await _musicServices.DeleteSong(ID_Song);
+
+            return response;
+        }
 
         #region Resources
 
@@ -66,6 +88,13 @@ namespace frontendLossSounds.Controllers
             List<CancionData> song = await _musicServices.GetSongInfo(ID_Cancion);
 
             return Json(song.FirstOrDefault());
+        }
+
+        public async Task<ResponseData> SaveMetadataSong(string archivo)
+        {
+            ResponseData response = await _musicServices.SaveMetadataSong(archivo);
+
+            return response;
         }
 
         #endregion

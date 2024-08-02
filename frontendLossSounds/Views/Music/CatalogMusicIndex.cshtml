@@ -1,0 +1,77 @@
+﻿@model List<CancionData>
+
+
+<div class="row align-items-center text-white">
+    <div class="col-lg-12 mt-4">
+        <h2>Musica</h2>
+
+        <button class="btn btn-link" onclick="fnCreateSongModal();">Agregar musica</button><br />
+        @Html.ActionLink("Regresar a la pantalla principal", "Index", "Music")
+    </div>
+
+
+
+    <div class="col-lg-12 mt-2">
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Numero de la cancion</th>
+                        <th>Duración</th>
+                        <th>Artista</th>
+                        <th>ALbum</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre_Cancion</td>
+                            <td>@item.Numero_Cancion</td>
+                            <td>@item.Duracion_Cancion seg.</td>
+                            <td>@item.Nombre_Artista</td>
+                            <td>@item.Nombre_Album</td>
+                            <td>
+                                <button class="btn btn-danger" onclick="fnDeleteUser(@item.ID_Cancion)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="CreateSongDiv"></div>
+
+<script type="text/javascript">
+
+    function fnCreateSongModal(){
+        $('#CreateSongDiv').load('@Url.Action("CreateSong","Music")');
+    }
+
+    function fnDeleteUser(idSong) {
+        if (confirm("Estas seguro de eliminar esta cancion?")) {
+
+
+            $.ajax({
+                url: '@Url.Action("DeleteSong", "Music")',
+                type: 'POST',
+                data: { ID_Song: idSong },
+                success: function (response) {
+                    alert(response.message);
+
+                    if (response.success) {
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Ocurrio un error. Intente más tarde.");
+                }
+            });
+        }
+    }
+
+</script>
