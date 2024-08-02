@@ -1,0 +1,81 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="CreateRolModal" tabindex="-1" aria-labelledby="CreateRolModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="CreateRolModalLabel">Crear nuevo rol</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+
+                        <label class="form-label">Rol</label>
+                        <input class="form-control" id="Rol" />
+
+                        <br /><br />
+
+                        <label class="form-label">Descripcion</label>
+                        <input class="form-control" id="Descripcion" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="SaveRol">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#CreateRolModal').modal('show');
+
+        $('#SaveRol').click(function () {
+            
+            var jsonModel = {
+                "Rol": document.getElementById('Rol').value,
+                "Descripcion": document.getElementById('Descripcion').value
+            }
+
+            var jsonString = JSON.stringify(jsonModel);
+            var modelEncrypt = encrypt(jsonString);
+
+            $.ajax({
+                url: '@Url.Action("CreateRol", "User")',
+                type: 'POST',
+                dataType: 'json',
+                data: { newRol: encodeURIComponent(modelEncrypt) },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        window.location.href = '@Url.Action("RolesIndex", "User")';
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function () {
+                    console.log("Error en la solicitud AJAX.");
+                }
+            });
+        })
+    });
+
+    function encrypt(plainText, key = "abc123abc123abc123abc123abc12312", ivString = "1234567890123456") {
+        var keyUtf8 = CryptoJS.enc.Utf8.parse(key);
+        var ivUtf8 = CryptoJS.enc.Utf8.parse(ivString);
+
+        var encrypted = CryptoJS.AES.encrypt(plainText, keyUtf8, {
+            iv: ivUtf8,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+
+        return encrypted.toString();
+    }
+
+
+</script>

@@ -77,7 +77,7 @@ namespace frontendLossSounds.Controllers
                     };
 
                     client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
-                    string url = string.Format("/api/{0}", "Register");
+                    string url = "/api/Register";
 
 
                     string jsonContent = JsonSerializer.Serialize(newUser);

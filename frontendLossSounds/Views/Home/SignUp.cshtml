@@ -84,7 +84,10 @@
         <div class="p-3 sombra mt-5">
             <h1 class="fw-bold">Unirme a <span class="LossSounds">LossSounds</span></h1>
             <div class="d-flex flex-column p-3">
-                <label>Nuevo usuario</label>
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Email" class="campo" required />
+
+                <label>Nombre de usuario</label>
                 <input type="text" id="name" placeholder="Mi nuevo usuario..." class="campo" required />
 
                 <label>Contraseña</label>
@@ -192,7 +195,8 @@
                 "NombreUsuario": document.getElementById('name').value,
                 "Contrasena": document.getElementById('password').value,
                 "ConfirmPassword": document.getElementById('passswordConfirmed').value,
-                "ID_Rol": 3
+                "ID_Rol": 3,
+                "Email": document.getElementById('email').value,
             }
 
             $.ajax({

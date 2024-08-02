@@ -21,7 +21,7 @@ namespace frontendLossSounds.Controllers
         }
         #endregion
 
-        //[Authorize(Role.DEFAULT)]
+        [Authorize(Role.DEFAULT)]
         public async Task<IActionResult> Index()
         {
             //var weather = await _weatherService.GetWeather("Aguascalientes");

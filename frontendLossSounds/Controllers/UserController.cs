@@ -2,6 +2,7 @@
 using frontendLossSounds.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using System.Text;
 using System.Text.Json;
 
@@ -13,10 +14,12 @@ namespace frontendLossSounds.Controllers
         private readonly ILogger<UserController> _logger;
 
         private BaseServices _services;
+        private RolServices _rolServices;
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
             _services = new BaseServices();
+            _rolServices = new RolServices();
         }
         #endregion
 
@@ -44,10 +47,34 @@ namespace frontendLossSounds.Controllers
             }
         }
 
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ActionResult> RolesIndex()
+        {
+            try
+            {
+                IActionResult response = await GetRoles();
+
+                if(response is JsonResult jsonResult)
+                {
+                    string jsonString = JsonSerializer.Serialize(jsonResult.Value);
+                    List<RolesResponseModel> roles = JsonSerializer.Deserialize<List<RolesResponseModel>>(jsonString);
+
+                    return View(roles);
+                }
+
+                return View("Error");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
         #endregion
 
         #region Create
 
+        #region Users
         [Authorize(Role.IT_ADMIN)]
         public async Task<ActionResult> UserCreate()
         {
@@ -58,7 +85,7 @@ namespace frontendLossSounds.Controllers
                 string jsonRoles = JsonSerializer.Serialize(rolesResult.Value);
                 List<RolesResponseModel> rolesList = JsonSerializer.Deserialize<List<RolesResponseModel>>(jsonRoles);
 
-                ViewBag.Roles = rolesList.Select(x => new SelectListItem { Text = x.Rol, Value = x.ID_ROL.ToString() });
+                ViewBag.Roles = rolesList.Select(x => new SelectListItem { Text = x.Rol, Value = x.ID_Rol.ToString() });
             }
 
             return View();
@@ -113,7 +140,23 @@ namespace frontendLossSounds.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        #endregion
 
+        [Authorize(Role.IT_ADMIN)]
+        public PartialViewResult CreateRol()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ResponseData> CreateRol(string newRol)
+        {
+            ResponseData response = await _rolServices.CreateRol(newRol);
+
+            return response;
+
+        }
 
         #endregion
 
@@ -135,7 +178,7 @@ namespace frontendLossSounds.Controllers
                     string jsonRoles = JsonSerializer.Serialize(rolesResult.Value);
                     List<RolesResponseModel> rolesList = JsonSerializer.Deserialize<List<RolesResponseModel>>(jsonRoles);
 
-                    ViewBag.Roles = rolesList.Select(x => new SelectListItem { Text = x.Rol, Value = x.ID_ROL.ToString() });
+                    ViewBag.Roles = rolesList.Select(x => new SelectListItem { Text = x.Rol, Value = x.ID_Rol.ToString() });
                     return View(users);
                 }
                 return View("Error");
@@ -154,7 +197,7 @@ namespace frontendLossSounds.Controllers
             try
             {
                 TokenModel tokenModel = await _services.GetToken();
-
+                
                 var builder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -195,6 +238,30 @@ namespace frontendLossSounds.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<PartialViewResult> EditRol(int ID_Rol)
+        {
+            IActionResult rolResponse = await GetRol(ID_Rol);
+            RolesResponseModel rol = new RolesResponseModel();
+
+            if (rolResponse is JsonResult rolResult)
+            {
+                string jsonRoles = JsonSerializer.Serialize(rolResult.Value);
+                rol = JsonSerializer.Deserialize<RolesResponseModel>(jsonRoles);
+            }
+
+            return PartialView(rol);
+        }
+
+        [HttpPost]
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ResponseData> EditRol(string ID_Rol, RolModel editRol)
+        {
+            ResponseData response = await _rolServices.EditRol(ID_Rol, editRol);
+
+            return response;
         }
 
         #endregion
@@ -248,6 +315,15 @@ namespace frontendLossSounds.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        [HttpPost]
+        [Authorize(Role.IT_ADMIN)]
+        public async Task<ResponseData> DeleteRol(string ID_Rol)
+        {
+            ResponseData response = await _rolServices.DeleteRol(ID_Rol);
+
+            return response;
         }
 
         #endregion
@@ -326,6 +402,49 @@ namespace frontendLossSounds.Controllers
 
                     var jsonResponse = await response.Content.ReadAsStringAsync();
                     var responseObject = JsonSerializer.Deserialize<List<RolesResponseModel>>(jsonResponse);
+                    return Json(responseObject);
+                }
+                else
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    return Json(jsonResponse);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        
+        public async Task<IActionResult> GetRol(int ID_Rol)
+        {
+            try
+            {
+                TokenModel tokenModel = await _services.GetToken();
+
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                IConfiguration configuration = builder.Build();
+
+                var uri = configuration["URL_Base_API"];
+                var idApp = configuration["ID_App"];
+
+                HttpClient client = new HttpClient()
+                {
+                    BaseAddress = new Uri(uri)
+                };
+
+                client.DefaultRequestHeaders.Add("Authorization", tokenModel.Token);
+                string url = $"/api/GetRol?ID_Rol={ID_Rol}";
+
+                var response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var responseObject = JsonSerializer.Deserialize<RolesResponseModel>(jsonResponse);
                     return Json(responseObject);
                 }
                 else

@@ -69,21 +69,42 @@
 <body class="min-vh-100">
     <nav>
         <div class="row g-0 linea-blanca align-items-center">
-            <div class="col-md-3 ">
-                <h3 class="text-light mx-4 mt-3">
-                    LossSounds
-                </h3>
+            <div class="col-3">
+                <div class="row d-flex align-items-center">
+                    @if (settings.RolID == 1)
+                    {
+                        <div class="col-4">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Acciones
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("UserIndex", "User")" class="dropdown-item">Usuarios</a></li>
+                                    <li><a href="@Url.Action("RolesIndex", "User")" class="dropdown-item">Roles</a></li>
+                                    <li><a class="dropdown-item">Música</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
 
-                <div class="d-flex align-items-center mx-4">
-                    <h5 class="text-white">@saludo @settings.NombreUsuario</h5>
+
+                    <div class="col-8 p-0">
+                        <h3 class="text-light mx-4 mt-3 responsive-text">
+                            LossSounds
+                        </h3>
+                        <div class="d-flex align-items-center mx-4">
+                            <h5 class="text-white responsive-text">@saludo @settings.NombreUsuario</h5>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
             <div class="col-md-6">
-                <div class="mx-3 mt-3 mb-3 text-end">
+               @*  <div class="mx-3 mt-3 mb-3 text-end">
                     <input class="input" id="text-buscar" placeholder="Descubre nueva musica" type="text">
                     <select class="input" id="opciones-cancion"></select>
-                </div>
+                </div> *@
             </div>
 
 

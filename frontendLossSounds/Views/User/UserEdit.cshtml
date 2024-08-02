@@ -81,7 +81,6 @@
         }
 
         var userIdEncrypt = encrypt(UserID.toString());
-        console.log("Texto cifrado antes de enviar: ", userIdEncrypt);  // <-- Agrega esta línea para depuración
 
         $.ajax({
             url: '@Url.Action("UserEdit", "User")',

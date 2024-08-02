@@ -3,38 +3,62 @@
   "WorkspaceRootPath": "C:\\FrontLossSounds\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\music\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\music\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\user\\rolesindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\user\\rolesindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\user\\createrol.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\user\\createrol.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\user\\userindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\user\\userindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\user\\usercreate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\user\\usercreate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\services\\rolservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\services\\rolservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\user\\editrol.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\user\\editrol.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\models\\rolmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\models\\rolmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\user\\useredit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\user\\useredit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\shared\\_losssounslayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\shared\\_losssounslayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\views\\shared\\_menulayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\views\\shared\\_menulayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\controllers\\musiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\controllers\\musiccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\models\\albummodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\models\\albummodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\models\\extendmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\models\\extendmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|c:\\frontlosssounds\\frontendlosssounds\\services\\musicservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A124DB2C-FEA3-4E1C-950B-D7A3926C7F9D}|frontendLossSounds\\frontendLossSounds.csproj|solutionrelative:frontendlosssounds\\services\\musicservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 196,
+      "VerticalTabListWidth": 168,
       "DocumentGroups": [
         {
           "DockedWidth": 2,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,76 +74,157 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AlbumModel.cs",
-              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\AlbumModel.cs",
-              "RelativeDocumentMoniker": "frontendLossSounds\\Models\\AlbumModel.cs",
-              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\AlbumModel.cs",
-              "RelativeToolTip": "frontendLossSounds\\Models\\AlbumModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-25T23:12:21.446Z"
+              "DocumentIndex": 2,
+              "Title": "CreateRol.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\CreateRol.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\User\\CreateRol.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\CreateRol.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\User\\CreateRol.cshtml",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAACgAAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-02T04:34:06.638Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ExtendModel.cs",
-              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\ExtendModel.cs",
-              "RelativeDocumentMoniker": "frontendLossSounds\\Models\\ExtendModel.cs",
-              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\ExtendModel.cs",
-              "RelativeToolTip": "frontendLossSounds\\Models\\ExtendModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T05:17:20.818Z"
+              "DocumentIndex": 6,
+              "Title": "EditRol.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\EditRol.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\User\\EditRol.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\EditRol.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\User\\EditRol.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABwAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-01T22:31:29.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RolesIndex.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\RolesIndex.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\User\\RolesIndex.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\RolesIndex.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\User\\RolesIndex.cshtml",
+              "ViewState": "AQIAABMAAAAAAAAAAAAswCMAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-01T22:27:07.065Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Controllers\\UserController.cs",
+              "RelativeToolTip": "frontendLossSounds\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAkBAAAAAAAAAAAMwEEBAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T22:22:44.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RolServices.cs",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Services\\RolServices.cs",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Services\\RolServices.cs",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Services\\RolServices.cs",
+              "RelativeToolTip": "frontendLossSounds\\Services\\RolServices.cs",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAswH4AAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T21:54:23.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RolModel.cs",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\RolModel.cs",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Models\\RolModel.cs",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\RolModel.cs",
+              "RelativeToolTip": "frontendLossSounds\\Models\\RolModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-31T10:10:47.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserCreate.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\UserCreate.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\User\\UserCreate.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\UserCreate.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\User\\UserCreate.cshtml",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAEoAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-30T16:18:59.133Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserEdit.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\UserEdit.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\User\\UserEdit.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\UserEdit.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\User\\UserEdit.cshtml",
+              "ViewState": "AQIAAEUAAAAAAAAAAAAAAFIAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-29T22:27:10.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserIndex.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\UserIndex.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\User\\UserIndex.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\User\\UserIndex.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\User\\UserIndex.cshtml",
+              "ViewState": "AQIAADkAAAAAAAAAAAAAAEIAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-29T22:21:19.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_LossSounsLayout.cshtml",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\Shared\\_LossSounsLayout.cshtml",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\Shared\\_LossSounsLayout.cshtml",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\Shared\\_LossSounsLayout.cshtml",
+              "RelativeToolTip": "frontendLossSounds\\Views\\Shared\\_LossSounsLayout.cshtml",
+              "ViewState": "AQIAACIAAAAAAAAAAAAUwGUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-29T21:53:40.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "_MenuLayout.cshtml",
               "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\Shared\\_MenuLayout.cshtml",
               "RelativeDocumentMoniker": "frontendLossSounds\\Views\\Shared\\_MenuLayout.cshtml",
               "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\Shared\\_MenuLayout.cshtml",
               "RelativeToolTip": "frontendLossSounds\\Views\\Shared\\_MenuLayout.cshtml",
-              "ViewState": "AQIAAN8AAAAAAAAAAAAAAPMAAABsAAAA",
+              "ViewState": "AQIAADsBAAAAAAAAAAAAAM0AAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-07-21T04:20:36.045Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\Music\\Index.cshtml",
-              "RelativeDocumentMoniker": "frontendLossSounds\\Views\\Music\\Index.cshtml",
-              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Views\\Music\\Index.cshtml",
-              "RelativeToolTip": "frontendLossSounds\\Views\\Music\\Index.cshtml",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACMAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-21T04:20:17.215Z",
+              "DocumentIndex": 9,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "frontendLossSounds\\Models\\UserModel.cs",
+              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Models\\UserModel.cs",
+              "RelativeToolTip": "frontendLossSounds\\Models\\UserModel.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAwBgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2021-10-11T02:10:18.023Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MusicController.cs",
-              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Controllers\\MusicController.cs",
-              "RelativeDocumentMoniker": "frontendLossSounds\\Controllers\\MusicController.cs",
-              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Controllers\\MusicController.cs",
-              "RelativeToolTip": "frontendLossSounds\\Controllers\\MusicController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAuwCYAAAArAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-13T01:43:35.026Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MusicServices.cs",
-              "DocumentMoniker": "C:\\FrontLossSounds\\frontendLossSounds\\Services\\MusicServices.cs",
-              "RelativeDocumentMoniker": "frontendLossSounds\\Services\\MusicServices.cs",
-              "ToolTip": "C:\\FrontLossSounds\\frontendLossSounds\\Services\\MusicServices.cs",
-              "RelativeToolTip": "frontendLossSounds\\Services\\MusicServices.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAQwK4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2021-10-07T00:51:47.513Z"
             }
           ]
         },

@@ -1,0 +1,93 @@
+﻿@model List<RolesResponseModel>
+@{
+    Layout = "~/Views/Shared/_LossSounsLayout.cshtml";
+}
+
+<div class="row align-items-center text-white">
+    <div class="col-lg-12 mt-4">
+        <h2>Roles</h2>
+
+        <button class="btn btn-link" onclick="fnOpenCreateModal()">Agregar rol</button><br />
+        @Html.ActionLink("Regresar a la pantalla principal", "Index", "Music")
+    </div>
+
+
+
+    <div class="col-lg-12 mt-2">
+        <div class="table-responsive">
+            <table class="table text-white">
+                <thead>
+                    <tr>
+                        <th>Rol</th>
+                        <th>Descripcion</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Rol</td>
+                            <td>@item.Descripcion</td>
+                            <td>
+                                <button class="btn btn-primary" onclick="fnOpenEditModal(@item.ID_Rol)">Editar</button>
+                                <button class="btn btn-danger" onclick="fnDeleteRol(@item.ID_Rol)">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="ModalCreateDiv"></div>
+<div id="ModalEditDiv"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+<script type="text/javascript">
+    function encrypt(plainText, key = "abc123abc123abc123abc123abc12312", ivString = "1234567890123456") {
+        var keyUtf8 = CryptoJS.enc.Utf8.parse(key);
+        var ivUtf8 = CryptoJS.enc.Utf8.parse(ivString);
+
+        var encrypted = CryptoJS.AES.encrypt(plainText, keyUtf8, {
+            iv: ivUtf8,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
+
+        return encrypted.toString();
+    }
+
+    function fnOpenCreateModal() {
+        $('#ModalCreateDiv').load('@Url.Action("CreateRol", "User")');
+    }
+
+    function fnOpenEditModal(idRol){
+        $('#ModalEditDiv').load('@Url.Action("EditRol", "User")?ID_Rol=' + idRol);
+    }
+
+    function fnDeleteRol(idRol) {
+        if (confirm("Estas seguro de eliminar este rol?")) {
+
+            var encryptedId = encrypt(idRol.toString());
+
+            $.ajax({
+                url: '@Url.Action("DeleteRol", "User")',
+                type: 'POST',
+                data: { ID_Rol: encryptedId },
+                success: function (response) {
+                    alert(response.message);
+
+                    if (response.success) {
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+                    alert("Ocurrio un error. Intente más tarde.");
+                }
+            });
+        }
+    }
+
+</script>
